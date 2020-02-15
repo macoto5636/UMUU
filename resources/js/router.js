@@ -47,6 +47,7 @@ import UserChange2 from './components/user_change/UserChange2Component'
 import Inquiry from './components/inquiry/Inquiry.vue'
 import InquiryForm from './components/inquiry/InquiryForm.vue'
 import InquiryConfirm from './components/inquiry/InquiryConfirm.vue'
+import InquiryEnd from './components/inquiry/InquiryEnd.vue'
 
 //注文履歴 orderhistory
 import Order_History from './components/order_history/order_history.vue'
@@ -221,6 +222,10 @@ const routes = [
             {
                 path: '/inquiry/confirm',
                 component: InquiryConfirm
+            },
+            {
+                path: '/inquiry/end',
+                component: InquiryEnd
             },
         ]
     },

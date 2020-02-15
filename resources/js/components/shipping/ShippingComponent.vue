@@ -5,6 +5,17 @@
             <span slot="subtitle">注文・配送管理</span>
         </title-component>
 
+        <div>
+            <download-excel
+                class   = "btn btn-secondary"
+                :data   = "orders"
+                :fields = "excel_fields"
+                worksheet = "My Worksheet"
+                name    = "orders.xls"> 
+                注文データをダウンロード
+            </download-excel>
+        </div>
+
         <table class="table my-3">
             <thead>
                 <tr>
@@ -34,7 +45,6 @@
             </tbody>
         </table>
         <div @click="$router.push('/admin/menu')" class="btn btn-secondary my-2">メニューに戻る</div>
-
         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -68,6 +78,16 @@ export default {
                 isAsc: false
             },
             order_id:'',
+
+            excel_fields:{
+                '注文ID':'id',
+                '顧客ID':'user_id',
+                '支払い方法':'payment_name',
+                '配送方法':'shipping_name',
+                '状態':'state_name',
+                '注文日時':'created_at'
+
+            }
         }
     },
     computed:{
@@ -87,7 +107,9 @@ export default {
         }   
     },
     mounted(){
-        axios.get('/api/order/gets').then(response => this.orders = response.data)
+        var self = this;
+        console.log("aaaa");
+        axios.get('/api/order/gets').then(response => this.orders = response.data) 
         .catch(function(error){
                 // The request was made and the server responded with a status code
                 // that falls out of the range of 2xx
@@ -99,6 +121,7 @@ export default {
     },
     methods:{
         sortBy(key){
+             console.log(this.orders);
             this.sort.isAsc = this.sort.key === key ? !this.sort.isAsc : false;
             this.sort.key = key;
         },

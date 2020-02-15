@@ -88,6 +88,9 @@ Route::group(['middleware' => 'api'], function(){
     Route::post('products/update','ProductController@update');
     Route::post('products/insert','ProductController@insert');
 
+    //excelに全商品を出力するためのデータを取得
+    Route::get('products/excel','ProductController@getExcelDate');
+
     //詳細表示
     Route::get('products/{id}','ProductSearchController@details');
     
@@ -116,6 +119,10 @@ Route::group(['middleware' => 'api'], function(){
 
     //注文を日付絞る
     Route::post('order/nikkei','OrderController@nikkei'); 
+
+    //売上日計表の一日の売上をexcelに出力するためのデータを取得
+    Route::post('sales/excel', 'OrderController@salesExcelDate');
+    Route::post('sales/excel/sum', 'OrderController@salesSumExcelDate');
 
     //カート
     Route::get('cart/user_get/{id}','CartController@user_get');

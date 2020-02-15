@@ -13,6 +13,9 @@ use Illuminate\Http\Request;
 |
 */
 
+//問い合わせ送信
+ Route::post('/inquiry/send', 'MailController@inquirySend');
+
 //ログイン周り
 Route::post('/login', 'AuthController@login');
  

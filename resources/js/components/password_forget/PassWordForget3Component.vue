@@ -72,7 +72,7 @@ export default {
             console.log("checkformに飛んだ");
             //メールアドレスチェック
             var regexp = /^[A-Za-z0-9]{1}[A-Za-z0-9_.-]*@{1}[A-Za-z0-9_.-]{1,}\.[A-Za-z0-9]{1,}$/;
-            if(!regexp.test(this.user.email)){
+            if(!regexp.test(this.email)){
                 checkflg = false;
                 this.emailflg = true;
             }else{
@@ -80,14 +80,14 @@ export default {
             }
             //パスワードチェック
             regexp = /^([a-zA-Z0-9]{6,})$/;
-            if(!regexp.test(this.user.password)){
+            if(!regexp.test(this.password)){
                 checkflg = false;
                 this.passwordflg = true;
             }else{
                 this.passwordflg = false;
             }
             //再入力
-            if(this.user.password != this.user.repassword){
+            if(this.password != this.repassword){
                 checkflg = false;
                 this.repasswordflg = true;
             }else{

@@ -8,6 +8,9 @@ import router from './router'
 import Vuex from 'vuex'
 import App from './App.vue'
 import store from './store'
+import JsonExcel from 'vue-json-excel'
+
+Vue.component('downloadExcel',JsonExcel)
 
 Vue.use(Vuex);
 require('./bootstrap');

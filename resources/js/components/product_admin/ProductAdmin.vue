@@ -5,12 +5,19 @@
             <span slot="subtitle">商品管理</span>
         </title-component>
         <div class="row my-3">
-            <div class="col-6 col-lg-4 mx-auto">
+            <div class="col-4 col-lg-3 mx-auto">
                 <router-link to="/admin/product/add" tag="button" class="btn btn-danger btn-block">新規商品追加</router-link>
             </div>
-            <div class="col-6 col-lg-4 mx-auto">
+            <div class="col-4 col-lg-3 mx-auto">
                 <router-link to="/admin/product/category" tag="button" class="btn btn-success btn-block">カテゴリ一覧</router-link>
             </div>
+            <download-excel
+            class   = "col-4 col-lg-3 mx-auto btn btn-secondary btn-block"
+            :data   = "excel"
+            worksheet = "My Worksheet"
+            name    = "product.xls"> 
+            商品データをダウンロード
+            </download-excel>
         </div>
         <hr class="my-3">
         <div class="row">
@@ -65,6 +72,7 @@ export default {
     data(){
         return{
             products:[],
+            excel:[],
             keyword: '',
             sort:{
                 key: '',
@@ -89,7 +97,19 @@ export default {
         }   
     },
     mounted(){
-        axios.get('/api/products').then(response => this.products = response.data)
+        axios.get('/api/products').then(response => this.products = response.data);
+
+        
+        var self = this;
+        axios.get('/api/products/excel').then(function(response){
+            self.excel = response.data;
+            console.log(self.excel);
+        }).catch(function(error){
+            console.log(error.response.data);
+            console.log(error.response.status);      // 例：400
+            console.log(error.response.statusText);  // Bad Request
+            console.log(error.response.headers);
+        }); 
     },
     methods:{
         search_product:function(){
@@ -99,6 +119,7 @@ export default {
       		})
         },
         sortBy(key){
+            console.log(this.products);
             this.sort.isAsc = this.sort.key === key ? !this.sort.isAsc : false;
             this.sort.key = key;
         },

@@ -136,4 +136,16 @@ class ProductController extends Controller
          }
          return redirect('product');
      }
+
+    //商品管理で全商品をexcelに出力するためのデータを取得
+    public function getExcelDate(Request $request){
+
+        $items = DB::table('products')
+            ->join('categories','products.category_id1','=','categories.id')
+            ->select('products.id as 商品ID', 'products.product_name as 商品名', 'product_details as 商品詳細','products.price as 価格',
+            'products.stock as 在庫','categories.category_name as カテゴリ')
+            ->get();
+    
+        return $items;
+    }
 }

@@ -11,6 +11,19 @@
                  v-model='hi'
                 />
             </div>
+   
+            <div class="col-12">
+                <download-excel
+                    v-if="orders!=''"
+                    class = "btn btn-secondary"
+                    :data = "excel"
+                    :fields = "excel_fields"
+                    worksheet = "My Worksheet"
+                    name  = "sales.xls"> 
+                    この日の売上をダウンロード
+                </download-excel>
+            </div>
+
             <div class="col-12">
                 <div v-if="orders!=''">
                 <div class="line mt-2 mb-5"></div>
@@ -28,6 +41,8 @@
                 >
                 </nikkei-order>
             </div>
+            <div class="col-12">
+            </div>
         </div>
     </div>
 </template>
@@ -37,13 +52,30 @@ import moment from "moment";
 export default {
     data(){
         return{
+            fields:{
+                'NAME':'name',
+                'City':'city'
+            },
             hi: new Date(),
             orders:{},
             sum:0,
-            count:0
+            count:0,
+            //excel出力用変数群
+            excel:[],
+            excelSum:0,
+            excel_fields: {
+                '注文ID': 'id',
+                'ユーザID': 'user_id',
+                '商品名': 'name',
+                '商品別売上数量': 'pruduct_number',
+                '商品別売上': 'product_sales',
+                '合計金額': 'sum',
+                '購入日':'created_at'
+            },
         }
     },
     watch:{
+        
         hi(){
            var self = this;
            this.sum = 0;
@@ -55,6 +87,15 @@ export default {
 			self.orders = response.data;
 			console.log(self.orders);
         }); 
+        //excelに出力するデータを取得
+            axios.post('/api/sales/excel',add).then(function(response){
+                self.excel = response.data;
+            });
+
+        axios.post('/api/sales/excel/sum',add).then(function(response){
+                self.excelSum = response.data;
+                self.excel.push({'sum':self.excelSum});
+            });
         }
     },
     mounted(){
@@ -63,8 +104,18 @@ export default {
                 'date':moment(this.hi).format('YYYY-MM-DD')
             }
 		 axios.post('/api/order/nikkei',add).then(function(response){
-			self.orders = response.data;
+            self.orders = response.data;
 			console.log(self.orders);
+        });
+
+        //excelに出力するデータを取得下も
+        axios.post('/api/sales/excel',add).then(function(response){
+            self.excel = response.data;
+        });
+
+        axios.post('/api/sales/excel/sum',add).then(function(response){
+            self.excelSum = response.data;
+            self.excel.push({'sum':self.excelSum});
         });
     },
     filters:{
@@ -77,7 +128,7 @@ export default {
             this.count += 1;
             this.sum += price;
             console.log("a");
-        }
+        },
     }
 }
 </script>

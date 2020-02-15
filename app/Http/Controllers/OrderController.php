@@ -146,4 +146,29 @@ class OrderController extends Controller
        return $sales;
     }
 
+    //売上日計表で一日の売上データをexcelに出力するためのデータを取得 下に続く
+    public function salesExcelDate(Request $request){
+        $items = DB::table('orders')
+                 ->join('orderdetails','orderdetails.order_id', '=', 'orders.id')
+                 ->join('products', 'orderdetails.product_id', '=', 'products.id')
+                 ->join('shippings', 'orders.shipping_id', 'shippings.id')
+                 ->select('orders.id as id', 'orders.user_id as user_id', 'products.product_name as name', 
+                         'orderdetails.number as pruduct_number', 'orderdetails.price as product_sales','orders.created_at')
+                 ->whereDate('orders.created_at',$request->date)->get();
+     
+        return $items;
+    }
+
+    //一日の売上金額を取得
+    public function salesSumExcelDate(Request $request){
+        $sum = DB::table('orders')
+                ->join('orderdetails','orderdetails.order_id', '=', 'orders.id')
+                ->join('products', 'orderdetails.product_id', '=', 'products.id')
+                ->join('shippings', 'orders.shipping_id', 'shippings.id')
+                ->whereDate('orders.created_at',$request->date)
+                ->sum('orderdetails.price');
+      
+        return $sum;
+    }
+
 }

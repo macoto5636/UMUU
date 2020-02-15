@@ -50,6 +50,24 @@ export default {
     },
     methods:{
 
+        //送信
+        register(){
+            console.log("メール送信できる？");
+            axios.post('/api/inquiry/send',this.inquiry).then(function(response){
+                console.log("遅れたか？");
+                console.log(response.data);
+                
+            }).catch(function(error){
+                // The request was made and the server responded with a status code
+                // that falls out of the range of 2xx
+                console.log(error.response.data);
+                console.log(error.response.status);      // 例：400
+                console.log(error.response.statusText);  // Bad Request
+                console.log(error.response.headers);
+            });
+             this.$router.push('/inquiry/end');
+           
+        }
     }
 }
 </script>

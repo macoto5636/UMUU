@@ -13,9 +13,9 @@
                         </div>
                         <hr>
                         <div class="light">
-                            <div class="want"  v-on:click="sendItem(item.id,index)">削除</div>
+                            <div class="want"  v-on:click="sendItem(item.product_id,index)">削除</div>
                         </div>
-                        <div align=right class="shoukei">￥{{itemSum(item.id,number) | number_format}}</div>
+                        <div align=right class="shoukei">￥{{itemSum(item.product_id,number) | number_format}}</div>
                 </div>
             </div><!--product-details-->
         </div>
@@ -53,8 +53,10 @@ export default {
             var edit = {
                 'user_id' : this.$store.state.user.id,
                 'product_id' : pro_id,
-                'number' : Number(this.number)
+                'number' : Number(number)
             };
+            console.log(edit);
+            console.log("aa");
             this.item.number = number;
             axios.post('/api/cart/edit',edit).then((res)=>
             {

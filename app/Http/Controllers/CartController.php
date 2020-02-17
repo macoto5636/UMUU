@@ -60,10 +60,12 @@ class CartController extends Controller
     }
 
     public function edit(Request $request){
-        $data = \App\cart::where('user_id',$request->user_id)->where('product_id',$request->product_id)->first();
+        $shopping = \App\cart::where('user_id',$request->user_id)->where('product_id',$request->product_id)->first();
 
-        $data -> number = request('number');
-        $data->save();
+        if(!is_null($shopping)){
+            $shopping -> number = request('number');
+            $shopping -> save();
+        }
     }
 
 }

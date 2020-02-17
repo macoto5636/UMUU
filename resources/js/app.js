@@ -9,7 +9,9 @@ import Vuex from 'vuex'
 import App from './App.vue'
 import store from './store'
 import JsonExcel from 'vue-json-excel'
+import Paginate from 'vuejs-paginate';
 
+Vue.component('paginate', Paginate);
 Vue.component('downloadExcel',JsonExcel)
 
 Vue.use(Vuex);
@@ -62,7 +64,6 @@ Vue.component('order-component', require('./components/order/OrderComponent.vue'
 Vue.component('order-product', require('./components/order/OrderProduct.vue').default);
 
 //注文履歴 order_history
-Vue.component('order-history-list', require('./components/order_history/order_history_list.vue').default);
 Vue.component('order-parts', require('./components/order_history/order_parts.vue').default);
 Vue.component('order-product', require('./components/order_history/order_product.vue').default);
 

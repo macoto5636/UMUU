@@ -7,7 +7,7 @@
                         注文日:{{order.created_at | moment }}
                     </div>
                     <div class="col-5">
-                        <div align="right">合計:￥{{price + order.postage | number_format }}</div>
+                        <div align="right">合計:￥{{price + order.postage}}</div>
                     </div>
                     <div class="light">
                         注文番号：{{order.id}}　　
@@ -71,7 +71,7 @@ export default {
             return moment(val).format('YYYY/MM/DD');
         }
     },
-    mounted: function(){
+    created: function(){
         var self = this;
         axios.get('/api/order/user_detail/' + self.order.id).then(function(response){
             self.order_details = response.data;
@@ -123,5 +123,6 @@ export default {
 .state{
     font-weight: bold;
 }
+
 
 </style>

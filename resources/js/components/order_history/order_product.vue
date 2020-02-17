@@ -6,7 +6,7 @@
             </div>
             <div class="col col-md-9">
                 {{product.product_name}}<br>
-                <div class="price">￥{{product.price | number_format}}</div>
+                <div class="price">￥{{product.price }}</div>
                 <div align="right">{{order_detail.number}}個</div>
                 <div align="right">
                     <router-link :to="{ name: 'product', params: { id: product.id }}" class="btn btn-secondary mt-2">
@@ -35,10 +35,14 @@ export default {
     },
     filters:{
 		number_format:function(val){
-        	return val.toLocaleString();
+            if(val === null){
+                return null;
+            }else{
+                return val.toLocaleString();
+            }
     	}
 	},
-    mounted(){
+    created(){
         var self = this;
         axios.get('/api/order/order_product/' + self.order_detail['product_id']).then(function(response){
             self.product = response.data;

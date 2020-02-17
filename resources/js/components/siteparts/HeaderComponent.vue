@@ -18,7 +18,7 @@
                     <router-link to="/" class="nav-link">トップ</router-link>
                 </li>
                 <li class="nav-item">
-                    <router-link to="/product" class="nav-link">商品一覧</router-link>
+                    <div to="/product" class="nav-link" v-on:click="search_id()">商品一覧</div>
                 </li>
                 <li class="nav-item">
                     <router-link to="/inquiry" class="nav-link">お問い合わせ</router-link>
@@ -114,9 +114,21 @@ export default {
         },
         search(word){
             if(this.$router.name === 'productList'){
-                this.$store.commit('changeKeyword',word);    
+                this.$store.commit('changeKeyword',word);
+                this.$store.commit('changeCategory',0);        
             }else{
                 this.$store.commit('changeKeyword',word);
+                this.$store.commit('changeCategory',0);    
+                this.$router.push({path: '/product'});
+            }            
+        },
+        search_id(){
+            if(this.$router.name === 'productList'){
+                this.$store.commit('changeCategory',0);    
+                this.$store.commit('changeKeyword','');
+            }else{
+                this.$store.commit('changeCategory',0);
+                this.$store.commit('changeKeyword','');
                 this.$router.push({path: '/product'});
             }            
         }

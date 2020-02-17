@@ -60,20 +60,6 @@
 
 <script>
 export default {
-    data(){
-        return{
-            items:[
-                {title: '商品検索',
-                href: '/product',
-                },
-                {title: 'ニュース',
-                href: '/news',
-                },
-                {title: '注文',
-                href: '/order'}
-            ]
-        }
-    },
     computed:{
         isLogin : function(){
             return this.$store.state.isLogin

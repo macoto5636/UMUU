@@ -103,14 +103,14 @@ export default {
     methods:{
         logout(){
             var self = this;
-            axios.post('/api/logout').then(res => {
+            //axios.post('/api/logout').then(res => {
                 axios.defaults.headers.common['Authorization'] = '';
-                this.$store.commit('authState',false);
+                this.$store.commit('RESET_VUEX_STATE');
                 axios.get('api/cart/count/' + self.$store.state.user.id).then(res => {
                         this.$store.commit('count',-(res.data));
                 })
                 this.$router.push({path: '/'});
-            })
+            //})
         },
         search(word){
             if(this.$router.name === 'productList'){

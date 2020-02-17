@@ -70,19 +70,19 @@ export default {
     },
     methods:{
         logout(){
-            axios.post('/api/logout').then(res => {
+            //axios.post('/api/logout').then(res => {
                 axios.defaults.headers.common['Authorization'] = '';
                 this.$store.commit('authState',false);
                 this.$router.push({path: '/'});
-            })
+            //})
             this.$router.push({path: '/'});
         },
         logoutB(){
-            axios.post('/api/logout').then(res => {
+            //axios.post('/api/logout').then(res => {
                 axios.defaults.headers.common['Authorization'] = '';
                 this.$store.commit('authState',false);
                 this.$router.push({path: '/admin'});
-            })
+            //})
             this.$router.push({path: '/admin'});
         },
         search(id){

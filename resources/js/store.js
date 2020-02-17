@@ -1,7 +1,24 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+import createPersistedState from "vuex-persistedstate";
 
 Vue.use(Vuex)
+
+//初期化
+export const initialState = {
+    user : {},
+    isLogin: false,
+    count:0,
+    admin: false,
+    keyword:'',
+    category_id:0,
+}
+
+const mutations = {
+    RESET_VUEX_STATE(state){
+        Object.assign(state, JSON.parse(localStorage.getItem('initialState')));
+    }
+}
 
 export default new Vuex.Store({
     state:{
@@ -11,7 +28,6 @@ export default new Vuex.Store({
         admin: false,
         keyword:'',
         category_id:'',
-        paginationNumber: 1,
     },
     mutations:{
         user(state,user){
@@ -34,7 +50,10 @@ export default new Vuex.Store({
         },
         changeCategory(state,category){
             state.category_id = category;
-        }
+        },
+        RESET_VUEX_STATE(state) {
+            Object.assign(state, JSON.parse(localStorage.getItem('initialState')));
+        }, 
     },
     getter:{
         user(state){
@@ -43,5 +62,6 @@ export default new Vuex.Store({
         inSigenedIn(state){
             return state.status;
         }
-    }
+    },
+    plugins:[createPersistedState({key: 'UMUU'})],
 });

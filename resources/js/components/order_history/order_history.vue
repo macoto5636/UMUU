@@ -38,7 +38,7 @@ export default {
                 console.log(error.response.status);      // 例：400
                 console.log(error.response.statusText);  // Bad Request
                 console.log(error.response.headers);
-            }); 
+        }); 
 
     }
 }

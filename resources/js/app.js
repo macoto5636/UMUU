@@ -10,6 +10,7 @@ import App from './App.vue'
 import store from './store'
 import JsonExcel from 'vue-json-excel'
 import Paginate from 'vuejs-paginate';
+import { initialState } from './store'; //追加
 
 Vue.component('paginate', Paginate);
 Vue.component('downloadExcel',JsonExcel)
@@ -119,5 +120,10 @@ const app = new Vue({
     router,
     store: store,
     components: {App},
-    template: '<App />'
+    template: '<App />',
+    render: h => h(App),
+    created() {
+        // created時に空のinitialStateをlocalStorageに保存しておく。
+       localStorage.setItem('initialState', JSON.stringify(initialState));
+    }
 });

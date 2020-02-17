@@ -31,6 +31,7 @@
         "vue-star-rating": "^1.6.1",
         "vuejs-paginate": "^2.1.0",
         "vuex": "^3.1.2",
+        "vuex-persistedstate": "^2.7.1",
         "yubinbango-core": "git+https://github.com/nasum/yubinbango-core.git"
     }
 }

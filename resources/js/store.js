@@ -11,6 +11,7 @@ export default new Vuex.Store({
         admin: false,
         keyword:'',
         category_id:'',
+        paginationNumber: 1,
     },
     mutations:{
         user(state,user){

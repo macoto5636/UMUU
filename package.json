@@ -29,6 +29,7 @@
         "v-calendar": "^1.0.0-beta.23",
         "vue-json-excel": "^0.2.98",
         "vue-star-rating": "^1.6.1",
+        "vuejs-paginate": "^2.1.0",
         "vuex": "^3.1.2",
         "yubinbango-core": "git+https://github.com/nasum/yubinbango-core.git"
     }

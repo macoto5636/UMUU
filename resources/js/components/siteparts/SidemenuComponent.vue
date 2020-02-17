@@ -88,9 +88,11 @@ export default {
         search(id){
             if(this.$router.name === 'productList'){
                 this.$store.commit('changeCategory',id);    
+                this.$store.commit('changeKeyword','');
             }else{
                 this.$store.commit('changeCategory',id);
                 this.$router.push({path: '/product'});
+                this.$store.commit('changeKeyword','');
             }            
         }
     }

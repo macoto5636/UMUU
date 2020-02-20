@@ -1,7 +1,7 @@
 <template>
 <div class="product">
     <router-link :to="{ name: 'product', params: { id: product.id }}">
-        <img v-bind:src="path+product.image" width="150px" height="150px">
+        <img v-bind:src="path+product.image" width="150px" height="150px" style="object-fit: contain;">
         {{product.product_name}}<br>
         <span class="price">￥{{product.price | number_format}}</span><br>
 

@@ -25,6 +25,7 @@
             {{review.article}}
         </div>
     </div><!--row-->
+    <hr class="my-2">
 </div><!--container-->
 </template>
 

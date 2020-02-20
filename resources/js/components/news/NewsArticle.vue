@@ -14,6 +14,9 @@
                 {{ news.article }}
             </div>
         </div>
+        <router-link to="/news">
+             <button class="btn btn-secondary btn-sm my-3">ニュース一覧へ戻る</button>
+        </router-link>
     </div>
 </template>
 

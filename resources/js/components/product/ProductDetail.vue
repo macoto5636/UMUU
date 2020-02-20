@@ -3,7 +3,7 @@
 
         <div class="row">
 
-                <img class="product_image col-sm-9 col-md-4 mx-auto m-5 img-thumbnail " :src="'/product_image/' + product.image" width="200px" height="300px">
+                <img class="product_image col-sm-9 col-md-4 mx-auto m-5 img-thumbnail " :src="'/product_image/' + product.image" width="200px" height="200px" style="object-fit: contain;">
       
             <div class="col-sm-12 col-md-8 mx-auto">
                 <div class="mt-3"> 
@@ -11,7 +11,7 @@
                 </div>
                 <div class="row">
                     <div class="category col"> 
-                        カテゴリ：{{ product.category_name }}
+                        カテゴリ：<a v-on:click="search" class="want" >{{ product.category_name }}</a>
                     </div>
                     
                 </div>
@@ -30,8 +30,7 @@
                     <div v-if="isLogin ==false" @click="$router.push('/login');" class="btn btn-primary ml-2" data-toggle="tooltip" data-placement="top" title="先にログインしてください">カートに入れる</div>
                     <div v-else class="btn btn-primary ml-2" @click="goShoping">カートに入れる</div>
                 </div>
-                <div align="right">
-                        
+                <div align="right">          
                         <div v-if="isLogin == false"  @click="$router.push('/login')" class="wanted" data-toggle="tooltip" data-placement="top" title="先にログインしてください">欲しいものリストに追加する</div>
                         <div v-else-if="wantsCheck==''" @click="addWant" class="want">欲しいものリストに追加する</div>
                         <div v-else class="wanted">欲しいものリストに追加済</div>
@@ -153,6 +152,11 @@ export default {
         },
         updated(){
             $('[data-toggle="tooltip"]').tooltip();
+        },
+        search(){
+                this.$store.commit('changeCategory',this.product.category_id1);    
+                this.$store.commit('changeKeyword','');
+                this.$router.push({path: '/product'});          
         }
     }
 }

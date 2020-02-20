@@ -23,6 +23,9 @@
                         </tr>
                     </tbody>
                 </table>
+                <router-link to="/">
+                    <button class="btn btn-secondary btn-sm my-3">トップへ戻る</button>
+                </router-link>
             </div>
         </div>
     </div>

@@ -5,7 +5,7 @@
         <span slot="subtitle">ショッピングカート</span>
     </title-component>
     <div class="row">
-        <div v-if="items==''" class="col-12 none">現在、カートの中に商品はありません</div>
+        <div v-if="items==''" class="col-11 mx-auto none">現在、カートの中に商品はありません</div>
         <div v-else class="col-md-8 mt-3">   
 
             <cart-product

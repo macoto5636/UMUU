@@ -32,8 +32,6 @@
                 </div>
             </div>
             <div class="col-12">
-                
-
                 <table class="table table-hover"> 
                     <thead>
                         <tr>

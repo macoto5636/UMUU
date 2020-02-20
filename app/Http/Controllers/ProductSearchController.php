@@ -102,7 +102,7 @@ class ProductSearchController extends Controller
      //関連商品現在は商品表から６件データを取得そのうち改良します。
      //もし作っているならこれ削除してください
      public function relation(Request $request){  //←追記
-        $result = \App\product::limit(4)->where('display','1')->orderBy('created_at','desc')->get();
+        $result = \App\product::limit(6)->where('display','1')->orderBy('created_at','desc')->get();
         return $result;
      }
 

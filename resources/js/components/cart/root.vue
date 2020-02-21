@@ -9,7 +9,7 @@
         <div v-else class="col-md-8 mt-3">   
 
             <cart-product
-                v-for="(item,index) in items" v-bind:key="item.product_id"
+                v-for="(item,index) in items" v-bind:key="item.id"
                 v-bind:item="item"
                 v-bind:index="index"
                 v-bind:path="path"

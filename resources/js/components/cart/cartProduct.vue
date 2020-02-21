@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row">
             <div class="col-4 col-md-3 mx-auto">
-                <img class="img-fruit my-3 mx-auto" v-bind:src="path+item.image" width="100px" height="100px">
+                <img class="img-fruit my-3 mx-auto" v-bind:src="path+item.image" width="100px" height="100px" style="object-fit: contain;">
             </div>
             <div class="col-8 col-md-9 ">
                 <div class="product-details">
@@ -13,7 +13,7 @@
                         </div>
                         <hr>
                         <div class="light">
-                            <div class="want"  v-on:click="sendItem(item.product_id,index)">削除</div>
+                            <div class="want"  v-on:click="sendItem(item.id,index)">削除</div>
                         </div>
                         <div align=right class="shoukei">￥{{itemSum(item.product_id,number) | number_format}}</div>
                 </div>

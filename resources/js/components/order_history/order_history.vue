@@ -60,6 +60,9 @@ export default {
     methods:{
         clickCallback: function(pageNum){
             this.currentPage = Number(pageNum);
+            $('html,body').animate({
+                scrollTop: 0
+            }, 100); 
             
         },
     },

@@ -20,7 +20,10 @@
                  
                 <div class="light"> 
                     価格：<font size="5" color="#b22222">￥{{product.price | number_format}}</font><br>
-                    <div v-if="product.stock!=0">在庫：<font size="5" color="#008000">{{product.stock}}点</font></div>
+                    <div v-if="product.stock!=0">
+                        在庫：<font size="5" color="#008000">{{product.stock}}点</font>
+                        <font color="#ff0000">{{ message }}</font>
+                    </div>
                     <div v-else>在庫：<font size="5" color="#ff0000">売り切れ</font><br>
                                 <font size="2" color="gray">入荷までしばらくお待ちください。</font>
                     </div>
@@ -28,7 +31,7 @@
                 <div v-if="product.stock!=0" align="right">
                     <input v-model="number" type="number" v-bind:max="product.stock" min="1">個
                     <div v-if="isLogin ==false" @click="$router.push('/login');" class="btn btn-primary ml-2" data-toggle="tooltip" data-placement="top" title="先にログインしてください">カートに入れる</div>
-                    <div v-else class="btn btn-primary ml-2" @click="goShoping">カートに入れる</div>
+                    <button v-else v-bind:disabled="max" class="btn btn-primary ml-2" @click="goShoping" >カートに入れる</button>
                 </div>
                 <div align="right">          
                         <div v-if="isLogin == false"  @click="$router.push('/login')" class="wanted" data-toggle="tooltip" data-placement="top" title="先にログインしてください">欲しいものリストに追加する</div>
@@ -61,12 +64,25 @@ export default {
             product: {},
             number: 1,
             wantsCheck: {},
+            message:'',
+            max:false
         }
     },
     computed:{
         isLogin : function(){
             return this.$store.state.isLogin
         },
+    },
+    watch:{
+        number(val){
+            if(this.number > this.product.stock){
+                this.message = '※入力された数が在庫数より多いです';
+                this.max = true;
+            }else{
+                this.message = '';
+                this.max = false;
+            }
+        }
     },
     created(){
         this.updated();
@@ -109,8 +125,11 @@ export default {
             };
 
             axios.post('/api/cart/add',add).then(res => {
-                this.$store.commit('count',1);  
+                if(res.data == 1){
+                    this.$store.commit('count',1);      
+                }
                 this.$router.push('/cart');
+
             }).catch(function(error){
                 // The request was made and the server responded with a status code
                 // that falls out of the range of 2xx

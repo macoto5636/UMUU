@@ -91,12 +91,18 @@ import Cart from  './components/cart/root.vue'
 //欲しいもの関連
 import Want from './components/wants/root.vue'
 
+//定期購入関連
+import Teiki from './components/teiki/TeikiPage.vue'
+
+import NotFound from './components/templates_components/NotFound.vue'
+
 import store from './store'
 
 
 Vue.use(VueRouter)
 
 const routes = [
+    { path: '*', component: NotFound },
     {
         path: '/',
         component: Top
@@ -171,6 +177,11 @@ const routes = [
                 component:UserChange2,
             }
         ]
+    },
+    {
+        path:'/mypage/teiki',
+        component: Teiki,
+        meta:{requiresAuth: true}
     },
     {
         path:'/review/{id}',

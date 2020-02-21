@@ -46,9 +46,12 @@ class CartController extends Controller
     public function add(Request $request){
         //カートに既にデータが入っているかチェック
         $data = \App\cart::where('user_id',$request->user_id)->where('product_id',$request->product_id)->first();
+        $ok = 0;
         if(isset($data)){
             $data -> number += request('number');
             $data->save();
+            $ok = 0;
+            return $ok;
         }else{
             $shopping = new \App\cart();
             $shopping -> user_id = request('user_id');
@@ -56,6 +59,8 @@ class CartController extends Controller
             $shopping -> number = request('number');
 
             $shopping -> save();
+            $ok = 1;
+            return $ok;
         }
     }
 

@@ -3,7 +3,7 @@
     <div class="container">
         <div class="row">
             <div class="col-2">
-                <img class="img-fruit" v-bind:src="path+item.image" width="100px" height="100px">
+                <img class="img-fruit" v-bind:src="path+item.image" width="100px" height="100px" style="object-fit: contain;">
             </div>
             <div class="product-details text-break col-10">
             <ul class="ml-2">

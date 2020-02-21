@@ -26,11 +26,11 @@
                 </ul>
             </div>
 
-            <form class="form-inline ml-3 mx-auto" >
-                <div class="input-group">
+            <form class="form-inline ml-3 mx-auto" @submit.prevent="search(serch_word)" >
+                <div class="input-group">       
                     <input v-model="serch_word" type="text" class="form-control" style="width:250px;" placeholder="商品検索">
                     <div class="input-group-append">
-                        <button type="button" v-on:click="search(serch_word)"  class="btn btn-primary">
+                        <button type="submit"  class="btn btn-primary">
                                 <i class="fas fa-search"></i>
                         </button>
                     </div>

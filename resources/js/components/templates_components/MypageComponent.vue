@@ -34,10 +34,12 @@
                 </router-link>
             </div>
             <div class=" mx-auto mt-2">
-                <button class="btn btn-info">
-                    <font size="5"><i class="fas fa-credit-card"></i> 定期購入</font><br>
-                    定期購入の確認・停止
-                </button>
+                <router-link to="/mypage/teiki">
+                    <button class="comming btn btn-info">
+                        <font size="5"><i class="fas fa-credit-card"></i> 定期購入</font><br>
+                        定期購入の確認・停止
+                    </button>
+                </router-link>
             </div>
         </div>
 
@@ -67,5 +69,6 @@ export default {
         height: 100px;
         color: white;
     }
+
 
 </style>

@@ -28,8 +28,8 @@
                     <router-link to="/cart"><div class="sub">ショッピングカート</div></router-link>
                     <router-link to="/mypage/order_history"><div class="sub">注文履歴</div></router-link>
                     <router-link to="/mypage/want"><div class="sub">欲しいものリスト</div></router-link>
-                    <router-link to="/mypage"><div class="sub">アカウント管理</div></router-link>
-                    <router-link to="/mypage"><div class="sub">定期購入管理</div></router-link>                
+                    <router-link to="/user/Verification"><div class="sub">アカウント情報</div></router-link>
+                    <router-link to="/mypage/teiki"><div class="sub">定期購入管理</div></router-link>                
                 </div>
                 <div v-else>
                     <router-link to="/login"><div class="sub">ログイン</div></router-link>
